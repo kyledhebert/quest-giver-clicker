@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="vendor/materialize/css/materialize.min.css"  media="screen,projection"/>
+
+    <title>Clicker Quest</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Clicker Quest</h1>
+        </div>
+        <div class="row">
+            <div class="col s3">
+                <h4>Stats</h4>
+                <div class="card-panel">
+                    <ul>
+                        <li id="gold">Gold:</li>
+                        <li id="activeQuests">Active Quests: </li>
+                        <li id="ratTails">Rat Tails:</li>
+                        <li id="goblinEars">Goblin Ears:</li>
+                        <li id="harpyFeathers">Harpy Feathers:</li>
+                    </ul>
+                    </span>
+                </div>
+                    <p><a class="waves-effect waves-light btn">Merchant</a>
+                    <p><a class="waves-effect waves-light btn">Upgrades</a>
+                    <p><a class="waves-effect waves-light btn">Zones</a>
+
+            </div>
+            <div class="col s9">
+                <h4>Quests</h4>
+                <ul class="collection">
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle green">play_arrow</i>
+                        <span class="title">Level 1 Quest</span>
+                        <p> This is a level one quest.<br>
+                        <span id="ratTails">Turn In: 10 Rat Tails</span><br>
+                        <a class="waves-effect waves-light btn" id="levelOne" onclick="giveQuest(event)">Give Quest</a>
+                        <a class="waves-effect waves-light btn disabled" id="levelOneReward" onclick="rewardQuest(event)">Reward Adventurer</a>
+                        <span class="progress"id="levelOneProgress"><span class="determinate" style="width:0%"></span></span>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle green">play_arrow</i>
+                        <span class="title">Level 2 Quest</span>
+                        <p> This is a level two quest.<br>
+                        <a class="waves-effect waves-light btn" id="levelTwo" onclick="giveQuest(event)">Give Quest</a>
+                        <a class="waves-effect waves-light btn disabled" id="levelTwoReward" onclick="rewardQuest(event)">Reward Adventurer</a>
+                        <span class="progress" id="levelTwoProgress"><span class="determinate" style="width:0%"></span></span>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle green">play_arrow</i>
+                        <span class="title">Level 3 Quest</span>
+                        <p> This is a level three quest.<br>
+                        <a class="waves-effect waves-light btn" id="levelThree" onclick="giveQuest(event)">Give Quest</a>
+                        <a class="waves-effect waves-light btn disabled" id="levelThreeReward" onclick="rewardQuest(event)">Reward Adventurer</a>
+                        <span class="progress" id="levelThreeProgress"><span class="determinate" style="width:0%"></span></span>
+                    </li>
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="vendor/jquery/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="vendor/materialize/js/materialize.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+</body>
+</html>
