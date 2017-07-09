@@ -1,4 +1,11 @@
- var game = {
+
+const maxQuestsEle = $("maxQuests")
+const activeQuestsEle = $("activeQuests")
+const ratTailsEle = $("ratTails")
+const goblinEarsEle = $("goblinEars")
+const harpyFeathersEle = $("harpyFeathers")
+
+const game = {
     maxQuests: 3,
     activeQuests: [],
     completedQuests: [],
@@ -14,9 +21,15 @@
         levelTwoReward: 3,
         levelThreeReward: 2, 
     }
- } 
+}
 
-function $(id) {
+activeQuestsEle.innerText = game.activeQuests.length.toString()
+maxQuestsEle.innerText = game.maxQuests.toString()
+ratTailsEle.innerText = game.player.inventory.goblinEars.toString()
+goblinEarsEle.innerText = game.player.inventory.goblinEars.toString()
+harpyFeathersEle.innerText = game.player.inventory.harpyFeathers.toString()
+
+function $(id: string) {
     return document.getElementById(id)
 }
 
@@ -31,8 +44,8 @@ function showQuests() {
 function giveQuest(e) {
     game.activeQuests.push(e.srcElement.id)
     $(e.target.id).classList.add("disabled")
-    $("activeQuests").innerText = game.activeQuests.length
-    $("maxQuests").innerText =  game.maxQuests
+    activeQuestsEle.innerText = game.activeQuests.length.toString()
+    maxQuestsEle.innerText =  game.maxQuests.toString()
 }
 
 function rewardQuest(e) {
@@ -41,19 +54,19 @@ function rewardQuest(e) {
     switch(reward) {
         case "levelOneReward":
             game.player.inventory.ratTails += game.rewards[e.target.id]
-            $("ratTails").innerHTML = "Rat Tails: " +  game.player.inventory.ratTails
+            ratTailsEle.innerText = `${game.player.inventory.ratTails}`
             $("levelOne").classList.remove("disabled")
             $("levelOneProgress").firstChild.style.width = "0%"
             break
         case "levelTwoReward":
             game.player.inventory.goblinEars += game.rewards[e.target.id]
-            $("goblinEars").innerHTML = "Goblin Ears: " + game.player.inventory.goblinEars
+            goblinEarsEle.innerText = game.player.inventory.goblinEars.toString()
             $("levelTwo").classList.remove("disabled")
             $("levelTwoProgress").firstChild.style.width = "0%"
             break
         default:
             game.player.inventory.harpyFeathers += game.rewards[e.target.id]
-            $("harpyFeathers").innerHTML = "Harpy Feathers: " + game.player.inventory.harpyFeathers
+            harpyFeathersEle.innerText = game.player.inventory.harpyFeathers.toString()
             $("levelThree").classList.remove("disabled")
             $("levelThreeProgress").firstChild.style.width = "0%"
     }
@@ -69,11 +82,11 @@ function readyQuest() {
 function progressQuest() {
     // for each quest in quest array
     game.activeQuests.forEach(function(quest) {
-        progressBar = $(quest +"Progress").firstChild
-        progress = progressBar.style.width.split("%")
-        progressValue = Number(progress[0]) +1 * 10
+        const progressBar = $(quest +"Progress").firstChild
+        const progress = progressBar.style.width.split("%")
+        const progressValue = Number(progress[0]) +1 * 10
         if (progressValue <= 100) {
-            progressBar.style.width = progressValue.toString() + "%"
+            progressBar.style.width = `${progressValue}%`   
         } else {
             game.activeQuests = game.activeQuests.filter(q => q !== quest)
             game.completedQuests.push(quest)
@@ -99,4 +112,3 @@ window.setInterval(function() {
     progressQuest()
     readyQuest()
 }, 1000)
-
