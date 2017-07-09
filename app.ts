@@ -16,19 +16,23 @@
     }
  } 
 
-
-
-
-
-
 function $(id) {
     return document.getElementById(id)
+}
+
+//QUESTS
+
+function showQuests() {
+    $("craft").classList.add("hidden");
+    $("trade").classList.add("hidden")
+    $("quest").classList.remove("hidden");
 }
 
 function giveQuest(e) {
     game.activeQuests.push(e.srcElement.id)
     $(e.target.id).classList.add("disabled")
-    $("activeQuests").innerHTML = "Active Quests: " + game.activeQuests.length + "/" + game.maxQuests
+    $("activeQuests").innerText = game.activeQuests.length
+    $("maxQuests").innerText =  game.maxQuests
 }
 
 function rewardQuest(e) {
@@ -75,6 +79,20 @@ function progressQuest() {
             game.completedQuests.push(quest)
         }
     });
+}
+
+// CRAFTING
+function showCrafting() {
+    $("quest").classList.add("hidden");
+    $("trade").classList.add("hidden");
+    $("craft").classList.remove("hidden");
+}
+
+// TRADING
+function showTrading() {
+    $("craft").classList.add("hidden");
+    $("quest").classList.add("hidden");
+    $("trade").classList.remove("hidden")
 }
 
 window.setInterval(function() {

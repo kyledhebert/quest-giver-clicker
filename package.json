@@ -1,0 +1,22 @@
+{
+  "name": "clickquest",
+  "version": "1.0.0",
+  "description": "A clicker game for #clickclickclick jam 2017",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyledhebert/quest-giver-clicker.git"
+  },
+  "author": "Kyle D. Hebert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kyledhebert/quest-giver-clicker/issues"
+  },
+  "homepage": "https://github.com/kyledhebert/quest-giver-clicker#readme",
+  "devDependencies": {
+    "typescript": "^2.4.1"
+  }
+}

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="app.css">
     <link type="text/css" rel="stylesheet" href="vendor/materialize/css/materialize.min.css"  media="screen,projection"/>
 
     <title>Clicker Quest</title>
@@ -20,19 +21,21 @@
                 <div class="card-panel">
                     <ul>
                         <li id="gold">Gold:</li>
-                        <li id="activeQuests">Active Quests: </li>
+                        <li>Active Quests:
+                            <span id="activeQuests"></span>/<span id="maxQuests"></span>
+                        </li>
                         <li id="ratTails">Rat Tails:</li>
                         <li id="goblinEars">Goblin Ears:</li>
                         <li id="harpyFeathers">Harpy Feathers:</li>
                     </ul>
                     </span>
                 </div>
-                    <p><a class="waves-effect waves-light btn">Merchant</a>
-                    <p><a class="waves-effect waves-light btn">Upgrades</a>
-                    <p><a class="waves-effect waves-light btn">Zones</a>
+                    <p><a class="waves-effect waves-light btn" onclick="showQuests()">Quests</a>
+                    <p><a class="waves-effect waves-light btn" onclick="showCrafting()">Craft</a>
+                    <p><a class="waves-effect waves-light btn"onclick="showTrading()">Trade</a>
 
             </div>
-            <div class="col s9">
+            <div class="col s9" id="quest">
                 <h4>Quests</h4>
                 <ul class="collection">
                     <li class="collection-item avatar">
@@ -61,8 +64,40 @@
                         <span class="progress" id="levelThreeProgress"><span class="determinate" style="width:0%"></span></span>
                     </li>
                 </ul>
-
-
+            </div>
+            <div class="col s9 hidden" id="craft">
+                <h4>Crafting</h4>
+                <ul class="collection">
+                    <li class="collection-item">
+                        <span class="title">Rat Tail Belt</span>
+                        <p>A fairly shoddy belt made from twisting several rat tails together.
+                            Favored by slightly experienced adventurers.
+                        </p>
+                        <p> 10 x RatTails = 1 Rat Tail Belt<br>
+                        <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a>
+                        <span class="progress" id="craftBeltProgress"><span class="determinate" style="width:0%"></span></span>
+                    </li>
+                    <li class="collection-item">
+                        <span class="title">Goblin Ear Pouch</span>
+                        <p>A tiny pouch made from sewing goblin ears together. Bonus! Pouch contents
+                            are waxed.
+                        <p> Favored by slightly experienced adventurers.
+                        <p> 10 x Goblin Ears = 1 Goblin Ear Pouch<br>
+                        <a class="waves-effect waves-light btn" id="craftPouch" onclick="">Craft</a>
+                        <span class="progress" id="craftPouchProgress"><span class="determinate" style="width:0%"></span></span>
+                    </li>
+                    <li class="collection-item">
+                        <span class="title">Harpy Feather Hat</span>
+                        <p>An adventuring hat decorated with harpy feathers.
+                        <p>Favored by slightly experienced adventurers.
+                        <p>10 x Harpy Feathers = 1 Harpy Feather Hat<br>
+                        <a class="waves-effect waves-light btn" id="craftHat" onclick="">Craft</a>
+                        <span class="progress" id="craftHatProgress"><span class="determinate" style="width:0%"></span></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col s9 hidden" id="trade">
+                <h4>Trading</h4>
             </div>
         </div>
     </div>
