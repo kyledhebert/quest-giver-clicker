@@ -73,72 +73,106 @@
                     </li>
                 </ul>
             </div>
-            <div class="col s12 m3 l3 hidden" id="craft">
-                <div class="card small">
-                    <div class="card-content">
-                        <span class="card-title">Rat Tail Belt</span>
-                        <p>A fairly shoddy belt made from twisting several rat tails together.
-                            Favored by slightly experienced adventurers.
-                        <div class="card-action craft-card-btn">
-                            <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a>    
-                            <p class="cost">Uses: 10 Rat Tails
+            <div class="hidden" id="craft">
+                <div class="col s12 m6 l3">
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Rat Tail Belt</span>
+                            <p>A fairly shoddy belt made from twisting several rat tails together.
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="ratTailBelt" onclick="craftItem(event)">Craft</a>    
+                                <p class="uses">Uses: <span id="cost">10</span> Rat Tails
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Goblin Ear Pouch</span>
+                            <p>A tiny pouch made from sewing goblin ears together.
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a>
+                                <p class="uses">Uses 10 Goblin Ears
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Harpy Feather Hat</span>
+                            <p>An adventuring hat decorated with harpy feathers.
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a><p class="uses">Uses 10 Harpy Feathers
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="card small">
-                    <div class="card-content">
-                        <span class="card-title">Goblin Ear Pouch</span>
-                        <p>A tiny pouch made from sewing goblin ears together. Bonus! Pouch contents
-                            are waxed.
-                            Favored by slightly experienced adventurers.
-                        <div class="card-action craft-card-btn">
-                            <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a>
-                            <p class="cost">Uses 10 Goblin Ears
+                <div class="col s12 m6 l3">
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Rat Tail Belt</span>
+                            <p>A fairly shoddy belt made from twisting several rat tails together.
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a>    
+                                <p class="uses">Uses: 10 Rat Tails
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Goblin Ear Pouch</span>
+                            <p>A tiny pouch made from sewing goblin ears together. 
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a>
+                                <p class="uses">Uses 10 Goblin Ears
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Harpy Feather Hat</span>
+                            <p>An adventuring hat decorated with harpy feathers.
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a><p class="uses">Uses 10 Harpy Feathers
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="card small">
-                    <div class="card-content">
-                        <span class="card-title">Harpy Feather Hat</span>
-                        <p>An adventuring hat decorated with harpy feathers.
-                            Favored by slightly experienced adventurers.
-                        <div class="card-action craft-card-btn">
-                            <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a><p class="cost">Uses 10 Harpy Feathers
+                <div class="col s12 m6 l3">
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Rat Tail Belt</span>
+                            <p>A fairly shoddy belt made from twisting several rat tails together.
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a>    
+                                <p class="uses">Uses: 10 Rat Tails
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-                        <div class="col s12 m3 l3">
-                <div class="card small">
-                    <div class="card-content">
-                        <span class="card-title">Rat Tail Belt</span>
-                        <p>A fairly shoddy belt made from twisting several rat tails together.
-                            Favored by slightly experienced adventurers.
-                        <div class="card-action craft-card-btn">
-                            <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a>    
-                            <p class="cost">Uses: 10 Rat Tails
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Goblin Ear Pouch</span>
+                            <p>A tiny pouch made from sewing goblin ears together. 
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a>
+                                <p class="uses">Uses 10 Goblin Ears
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card small">
-                    <div class="card-content">
-                        <span class="card-title">Goblin Ear Pouch</span>
-                        <p>A tiny pouch made from sewing goblin ears together. Bonus! Pouch contents
-                            are waxed.
-                            Favored by slightly experienced adventurers.
-                        <div class="card-action craft-card-btn">
-                            <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a>
-                            <p class="cost">Uses 10 Goblin Ears
-                        </div>
-                    </div>
-                </div>
-                <div class="card small">
-                    <div class="card-content">
-                        <span class="card-title">Harpy Feather Hat</span>
-                        <p>An adventuring hat decorated with harpy feathers.
-                            Favored by slightly experienced adventurers.
-                        <div class="card-action craft-card-btn">
-                            <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a><p class="cost">Uses 10 Harpy Feathers
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Harpy Feather Hat</span>
+                            <p>An adventuring hat decorated with harpy feathers.
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a><p class="uses">Uses 10 Harpy Feathers
+                            </div>
                         </div>
                     </div>
                 </div>

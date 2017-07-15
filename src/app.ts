@@ -20,6 +20,11 @@ const game = {
         levelOneReward: 5,
         levelTwoReward: 3,
         levelThreeReward: 2, 
+    },
+    crafts: {
+        ratTailBelt: { materials: "ratTails", cost: 10 },
+        goblinEarPouch: { cost: 9},
+        harpyFeatherHat: { cost: 8}
     }
 }
 
@@ -99,6 +104,31 @@ function showCrafting() {
     $("quest").classList.add("hidden");
     $("trade").classList.add("hidden");
     $("craft").classList.remove("hidden");
+}
+
+function craftItem(e) {
+    let item = e.target.id //ratTailBelt
+    switch(item) {
+        case "ratTailBelt":
+        item = game.crafts.ratTailBelt
+        console.log(playerCanCraft(item))
+        if (playerCanCraft(item)) {
+            game.player.inventory.ratTails -= item.cost
+            ratTailsEle.innerText = `${game.player.inventory.ratTails}`
+            // add item to inventory
+        } else {
+            Materialize.toast(`You don't have enough to make that item!`, 4000)
+        }
+    }
+}
+
+function playerCanCraft(item): boolean {
+    switch(item.materials) {
+        case "ratTails":
+            return (game.player.inventory.ratTails >= item.cost)
+        default:
+            return true
+    }
 }
 
 // TRADING
