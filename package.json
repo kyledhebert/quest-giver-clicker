@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/kyledhebert/quest-giver-clicker#readme",
   "devDependencies": {
+    "@types/materialize-css": "^0.98.3",
     "typescript": "^2.4.1"
+  },
+  "dependencies": {
+    "materialize-css": "^0.99.0"
   }
 }
