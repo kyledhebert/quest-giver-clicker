@@ -8,28 +8,31 @@ var game = {
     activeQuests: [],
     completedQuests: [],
     player: {
-        inventory: {
-            ratTails: 0,
-            goblinEars: 0,
-            harpyFeathers: 0
-        }
+        inventory: [
+            { id: 1, name: "ratTails", qty: 100 },
+            { id: 2, name: "goblinEars", qty: 100 },
+            { id: 3, name: "harpyFeathers", qty: 100 }
+        ]
     },
-    rewards: {
-        levelOneReward: 5,
-        levelTwoReward: 3,
-        levelThreeReward: 2,
-    },
-    crafts: {
-        ratTailBelt: { materials: "ratTails", cost: 10 },
-        goblinEarPouch: { cost: 9 },
-        harpyFeatherHat: { cost: 8 }
-    }
+    quests: [
+        { id: 1, name: "levelOne", rewardId: 1, rewardQty: 5 },
+        { id: 2, name: "levelTwo", rewardId: 2, rewardQty: 3 },
+        { id: 3, name: "levelThree", rewardId: 3, rewardQty: 2 },
+    ],
+    crafts: [
+        { id: 1, name: "ratTailBelt", cost: 10, qty: 0 },
+        { id: 2, name: "goblinEarPouch", cost: 9, qty: 0 },
+        { id: 3, name: "harpyFeatherHat", cost: 8, qty: 0 }
+    ]
 };
+var inventory = game.player.inventory;
+var quests = game.quests;
+var crafts = game.crafts;
 activeQuestsEle.innerText = game.activeQuests.length.toString();
 maxQuestsEle.innerText = game.maxQuests.toString();
-ratTailsEle.innerText = game.player.inventory.goblinEars.toString();
-goblinEarsEle.innerText = game.player.inventory.goblinEars.toString();
-harpyFeathersEle.innerText = game.player.inventory.harpyFeathers.toString();
+ratTailsEle.innerText = inventory[0].qty.toString();
+goblinEarsEle.innerText = game.player.inventory[1].qty.toString();
+harpyFeathersEle.innerText = game.player.inventory[2].qty.toString();
 function $(id) {
     return document.getElementById(id);
 }
@@ -40,51 +43,40 @@ function showQuests() {
     $("quest").classList.remove("hidden");
 }
 function giveQuest(e) {
-    game.activeQuests.push(e.srcElement.id);
-    $(e.target.id).classList.add("disabled");
+    var quest = quests.filter(function (q) { return q.name == e.target.id.slice(0, -4); })[0];
+    game.activeQuests.push(quest);
+    $(e.target.id).classList.add("disabled"); // TODO: FIX THIS
     activeQuestsEle.innerText = game.activeQuests.length.toString();
     maxQuestsEle.innerText = game.maxQuests.toString();
 }
 function rewardQuest(e) {
-    var reward = e.target.id;
-    $(reward).classList.add("disabled");
-    switch (reward) {
-        case "levelOneReward":
-            game.player.inventory.ratTails += game.rewards[e.target.id];
-            ratTailsEle.innerText = "" + game.player.inventory.ratTails;
-            $("levelOne").classList.remove("disabled");
-            $("levelOneProgress").firstChild.style.width = "0%";
-            break;
-        case "levelTwoReward":
-            game.player.inventory.goblinEars += game.rewards[e.target.id];
-            goblinEarsEle.innerText = game.player.inventory.goblinEars.toString();
-            $("levelTwo").classList.remove("disabled");
-            $("levelTwoProgress").firstChild.style.width = "0%";
-            break;
-        default:
-            game.player.inventory.harpyFeathers += game.rewards[e.target.id];
-            harpyFeathersEle.innerText = game.player.inventory.harpyFeathers.toString();
-            $("levelThree").classList.remove("disabled");
-            $("levelThreeProgress").firstChild.style.width = "0%";
-    }
+    // remove "Reward" from id
+    var quest = quests.filter(function (q) { return q.name == e.target.id.slice(0, -6); })[0];
+    var material = inventory.filter(function (m) { return m.id == quest.rewardId; })[0];
+    $(quest.name + "Reward").classList.add("disabled");
+    $(material.name).innerText = (material.qty += quest.rewardQty).toString();
+    $(quest.name + "Give").classList.remove("disabled");
+    activeQuestsEle.innerText = game.activeQuests.length.toString();
+    $(quest.name + "Progress").firstChild.style.width = "0%";
 }
 function readyQuest() {
     game.completedQuests.forEach(function (quest) {
-        $(quest + "Reward").classList.remove("disabled");
+        $(quest.name + "Reward").classList.remove("disabled");
         game.completedQuests = game.completedQuests.filter(function (q) { return q !== quest; });
     });
 }
 function progressQuest() {
     // for each quest in quest array
     game.activeQuests.forEach(function (quest) {
-        var progressBar = $(quest + "Progress").firstChild;
+        var progressBar = $(quest.name + "Progress").firstChild;
         var progress = progressBar.style.width.split("%");
         var progressValue = Number(progress[0]) + 1 * 10;
         if (progressValue <= 100) {
             progressBar.style.width = progressValue + "%";
         }
         else {
-            game.activeQuests = game.activeQuests.filter(function (q) { return q !== quest; });
+            game.activeQuests = game.activeQuests.filter(function (q) { return q.id !== quest.id; });
+            activeQuestsEle.innerText = "" + game.activeQuests.length;
             game.completedQuests.push(quest);
         }
     });
@@ -95,29 +87,25 @@ function showCrafting() {
     $("trade").classList.add("hidden");
     $("craft").classList.remove("hidden");
 }
-function craftItem(e) {
-    var item = e.target.id; //ratTailBelt
-    switch (item) {
-        case "ratTailBelt":
-            item = game.crafts.ratTailBelt;
-            console.log(playerCanCraft(item));
-            if (playerCanCraft(item)) {
-                game.player.inventory.ratTails -= item.cost;
-                ratTailsEle.innerText = "" + game.player.inventory.ratTails;
-                // add item to inventory
-            }
-            else {
-                Materialize.toast("You don't have enough to make that item!", 4000);
-            }
+function handleCraftClick(e) {
+    var item = game.crafts.filter(function (i) { return i.name == e.target.id; })[0];
+    if (playerCanCraft(item)) {
+        craftItem(item);
+    }
+    else {
+        Materialize.toast("You don't have enough to make that item!", 4000);
     }
 }
+function craftItem(item) {
+    var material = inventory.filter(function (m) { return m.id == item.id; })[0];
+    $(material.name).innerText = (material.qty -= item.cost).toString();
+    item.qty += 1;
+    console.log(inventory);
+    console.log(game.crafts);
+}
 function playerCanCraft(item) {
-    switch (item.materials) {
-        case "ratTails":
-            return (game.player.inventory.ratTails >= item.cost);
-        default:
-            return true;
-    }
+    var material = inventory.filter(function (m) { return m.id == item.id; })[0];
+    return material.qty >= item.cost;
 }
 // TRADING
 function showTrading() {
