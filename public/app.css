@@ -2,6 +2,12 @@
     display: none
 }
 
+.event-log {
+    font-size: 125%;
+    padding: 10px;
+    border: 2px solid black;
+}
+
 .uses {
     font-style: italic;
     font-size: 90%;

@@ -23,6 +23,10 @@ var game = {
         { id: 1, name: "ratTailBelt", cost: 10, qty: 0 },
         { id: 2, name: "goblinEarPouch", cost: 9, qty: 0 },
         { id: 3, name: "harpyFeatherHat", cost: 8, qty: 0 }
+    ],
+    log: [
+        { gaveFirstQuest: false },
+        {}
     ]
 };
 function $(id) {
