@@ -5,7 +5,7 @@ const ratTailsEle = $("ratTails")
 const goblinEarsEle = $("goblinEars")
 const harpyFeathersEle = $("harpyFeathers")
 
-const game = {
+let game = {
     maxQuests: 3,
     activeQuests: [],
     completedQuests: [],
@@ -29,16 +29,6 @@ const game = {
     ] 
 }
 
-const inventory = game.player.inventory
-const quests = game.quests
-const crafts = game.crafts
-
-activeQuestsEle.innerText = game.activeQuests.length.toString()
-maxQuestsEle.innerText = game.maxQuests.toString()
-ratTailsEle.innerText = inventory[0].qty.toString()
-goblinEarsEle.innerText = game.player.inventory[1].qty.toString()
-harpyFeathersEle.innerText = game.player.inventory[2].qty.toString()
-
 function $(id: string) {
     return document.getElementById(id)
 }
@@ -48,24 +38,24 @@ function $(id: string) {
 function showQuests() {
     $("craft").classList.add("hidden");
     $("trade").classList.add("hidden")
-    $("quest").classList.remove("hidden");
+    $("quest").classList.remove("hidden")
 }
 
 function giveQuest(e) {
-    const quest = quests.filter(q => q.name == e.target.id.slice(0, -4))[0]
+    const quest = game.quests.filter(q => q.name == e.target.id.slice(0, -4))[0]
     game.activeQuests.push(quest)
-    $(e.target.id).classList.add("disabled")  // TODO: FIX THIS
+    $(e.target.id).classList.add("disabled")
     activeQuestsEle.innerText = game.activeQuests.length.toString()
     maxQuestsEle.innerText =  game.maxQuests.toString()
 }
 
 function rewardQuest(e) {
     // remove "Reward" from id
-    const quest = quests.filter(q => q.name == e.target.id.slice(0, -6))[0]
-    const material = inventory.filter(m => m.id == quest.rewardId)[0]
+    const quest = game.quests.filter(q => q.name == e.target.id.slice(0, -6))[0]
+    const material = game.player.inventory.filter(m => m.id == quest.rewardId)[0]
 
     $(quest.name + "Reward").classList.add("disabled")
-    $(material.name).innerText = (material.qty += quest.rewardQty).toString()
+    $(material.name).innerText = `${material.qty += quest.rewardQty}`
     $(quest.name + "Give").classList.remove("disabled")
 
     activeQuestsEle.innerText = game.activeQuests.length.toString()
@@ -113,15 +103,14 @@ function handleCraftClick(e) {
 }
 
 function craftItem(item) {
-    const material = inventory.filter(m => m.id == item.id)[0]
-    $(material.name).innerText = (material.qty -= item.cost).toString()
+    const material = game.player.inventory.filter(m => m.id == item.id)[0]
     item.qty += 1
-    console.log(inventory)
-    console.log(game.crafts)
+    $(material.name).innerText = (material.qty -= item.cost).toString()
+
 }
 
 function playerCanCraft(item): boolean {
-    const material = inventory.filter(m => m.id == item.id)[0]
+    const material = game.player.inventory.filter(m => m.id == item.id)[0]
     return material.qty >= item.cost
 }
 
@@ -132,7 +121,36 @@ function showTrading() {
     $("trade").classList.remove("hidden")
 }
 
+// UTILITIES
+function saveGame() {
+    localStorage.setItem("savedGame", JSON.stringify(game))
+    console.log("saving game")
+}
+
+function displayStats() {
+    activeQuestsEle.innerText = game.activeQuests.length.toString()
+    maxQuestsEle.innerText = game.maxQuests.toString()
+    ratTailsEle.innerText = game.player.inventory[0].qty.toString()
+    goblinEarsEle.innerText = game.player.inventory[1].qty.toString()
+    harpyFeathersEle.innerText = game.player.inventory[2].qty.toString()
+}
+
+window.onload = () => {
+    if(localStorage) {
+        if(localStorage.getItem("savedGame")) {
+            game = JSON.parse(localStorage.getItem("savedGame"))
+            displayStats()
+        } else {
+            displayStats()
+        }
+
+    } else {
+        alert("You\'re browser does not support localStorage. Please try using Chrome instead!")
+    }
+}
+
 window.setInterval(function() {
     progressQuest()
     readyQuest()
+    saveGame()
 }, 1000)
