@@ -3,10 +3,13 @@
 }
 
 .event-log {
+    height: 200px;
+    overflow-y: scroll;
     font-size: 125%;
     padding: 10px;
     border: 2px solid black;
 }
+
 
 .uses {
     font-style: italic;
@@ -17,4 +20,8 @@
 
 .craft-card-btn {
     text-align: center;
+}
+
+.sell-btn {
+    margin-bottom: 12px
 }

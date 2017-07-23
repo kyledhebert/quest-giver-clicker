@@ -12,9 +12,9 @@ let game = {
     completedQuests: [],
     player: {
         inventory: [
-            { id: 1, name: "ratTails", qty: 0},
-            { id: 2, name: "goblinEars", qty: 0},
-            { id: 3, name: "harpyFeathers", qty: 0}
+            { id: 1, name: "ratTails", displayName: "Rat Tails", qty: 0, price: 1},
+            { id: 2, name: "goblinEars", displayName: "Goblin Ears", qty: 0, price: 2},
+            { id: 3, name: "harpyFeathers", displayName: "Harpy Feathers", qty: 0, price: 3}
         ]
 
     },
@@ -33,7 +33,7 @@ let game = {
             id: 1,
             name: "gaveFirstQuest",
             done: false,
-            text: "Another day in the starting zone . . . Here comes the first the noob, better give 'em a quest." 
+            text: "Another day in the starting zone . . . Here comes the first noob, better give 'em a quest." 
         },
         { 
             id: 2,
@@ -174,7 +174,48 @@ function showTrading() {
     $$("craft").classList.add("hidden");
     $$("quest").classList.add("hidden");
     $$("trade").classList.remove("hidden")
+    renderInventoryToSell()
 }
+
+
+
+function renderInventoryToSell () {
+    const listOfItemsToSell = $$("sell-inventory")
+    listOfItemsToSell.innerHTML = ""
+    const headerli = document.createElement("li")
+    headerli.classList.add("collection-header")
+    const header = document.createElement("h4") 
+    const headerText = document.createTextNode("Items to Sale")
+    header.appendChild(headerText)
+    headerli.appendChild(header)
+    listOfItemsToSell.appendChild(headerli)
+
+    game.player.inventory.forEach(function(item) {
+        if (item.qty > 0) {
+            const li = document.createElement("li")
+            li.classList.add("collection-item")
+
+            const span = document.createElement("span")
+            span.classList.add("title")
+            const spanContent = document.createTextNode(`${item.displayName}`)
+            span.appendChild(spanContent)
+
+            const button = document.createElement("a")
+            button.classList.add("waves-effect","waves-light", "btn", "secondary-content", "sell-btn")
+            button.id = item.name
+            button.onclick = function handleSellClick(event) {}
+            const total = item.price * item.qty
+            const buttonText = document.createTextNode(`Sell${item.qty} for ${total}`)
+            button.appendChild(buttonText)
+
+            li.appendChild(span)
+            li.appendChild(button)
+            listOfItemsToSell.appendChild(li)
+        }
+    })
+}
+
+
 
 // LOG
 function gaveFirstQuest(): boolean {
@@ -217,7 +258,7 @@ function updateEventLog() {
             break;
         case "tradingAvailable":
             break;
-        case "boughtFirstItem":
+        case "soldFirstItem":
             break;
         default:
             break;
