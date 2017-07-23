@@ -17,14 +17,14 @@
         </div>
         <div class="row">
             <div class="col s12 m9 l9 push-m3 push-l3" >
-                <a class="waves-effect waves-light btn" onclick="showQuests()">Quests</a>
-                <a class="waves-effect waves-light btn" onclick="showCrafting()">Craft</a>
-                <a class="waves-effect waves-light btn"onclick="showTrading()">Trade</a>
+                <span class="hidden" id="showQuests"><a class="waves-effect waves-light btn" id="showQuests" onclick="showQuests()">Quests</a></span>
+                <span class="hidden" id="showCrafting"><a class="waves-effect waves-light btn" onclick="showCrafting()">Craft</a></span>
+                <span class="hidden" id="showTrading"><a class="waves-effect waves-light btn" onclick="showTrading()">Trade</a></span>
             </div>
         </div>
         <div class="row">
             <div class="col s12 m3 l3">
-                <div class="event-log">Hello! It looks a new adventurer is waiting for a quest. Why don't you give her one?</div>
+                <div class="event-log"><span id="event-log-text"></span></div>
                 <h4>Stats</h4>
                 <div class="card-panel">
                     <ul>

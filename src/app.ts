@@ -1,4 +1,5 @@
 
+const eventLogTextEle = $("event-log-text")
 const maxQuestsEle = $("maxQuests")
 const activeQuestsEle = $("activeQuests")
 const ratTailsEle = $("ratTails")
@@ -11,9 +12,9 @@ let game = {
     completedQuests: [],
     player: {
         inventory: [
-            { id: 1, name: "ratTails", qty: 100},
-            { id: 2, name: "goblinEars", qty: 100},
-            { id: 3, name: "harpyFeathers", qty: 100}
+            { id: 1, name: "ratTails", qty: 0},
+            { id: 2, name: "goblinEars", qty: 0},
+            { id: 3, name: "harpyFeathers", qty: 0}
         ]
 
     },
@@ -28,8 +29,36 @@ let game = {
         { id: 3, name: "harpyFeatherHat", cost: 8, qty: 0 }
     ],
     log : [
-        { gaveFirstQuest: false },
-        { }
+        {   
+            id: 1,
+            name: "gaveFirstQuest",
+            done: false,
+            text: "Another day in the starting zone . . . Here comes the first the noob, better give 'em a quest." 
+        },
+        { 
+            id: 2,
+            name: "rewardFirstQuest",
+            done: false,
+            text: "They shouldn't be gone too long, it's only five rats." 
+        },
+        {
+            id: 3,
+            name: "craftingAvailable",
+            done: false,
+            text: "If you had a few more rat tails, you could make something--er--nice. Yeah, let's just go with nice."
+        },
+        {
+            id: 4,
+            name: "craftedFirstItem",
+            done: false,
+            text: "Take those over to the craft bench and see what you can make."
+        },
+        {
+            id: 5,
+            name: "tradingAvailable",
+            done: false,
+            text: "You might be able to sell that at the market."
+        }
     ] 
 }
 
@@ -46,6 +75,11 @@ function showQuests() {
 }
 
 function giveQuest(e) {
+    if (game.log.find(getFirstIncompleteLogItem).name === "gaveFirstQuest") {
+        console.log("starting first quest")
+        completeFirstIncompleteLogItem()
+    }
+
     const quest = game.quests.filter(q => q.name == e.target.id.slice(0, -4))[0]
     game.activeQuests.push(quest)
     $(e.target.id).classList.add("disabled")
@@ -54,6 +88,10 @@ function giveQuest(e) {
 }
 
 function rewardQuest(e) {
+    if (game.log.find(getFirstIncompleteLogItem).name === "rewardFirstQuest") {
+        console.log("rewarding first adventurer")
+        completeFirstIncompleteLogItem()
+    }
     // remove "Reward" from id
     const quest = game.quests.filter(q => q.name == e.target.id.slice(0, -6))[0]
     const material = game.player.inventory.filter(m => m.id == quest.rewardId)[0]
@@ -64,7 +102,6 @@ function rewardQuest(e) {
 
     activeQuestsEle.innerText = game.activeQuests.length.toString()
     $(quest.name + "Progress").firstChild.style.width = "0%"
-
 }
 
 function readyQuest() {
@@ -91,6 +128,11 @@ function progressQuest() {
 }
 
 // CRAFTING
+function showCraftingButton() {
+    $("showQuests").classList.remove("hidden")
+    $("showCrafting").classList.remove("hidden")
+}
+
 function showCrafting() {
     $("quest").classList.add("hidden");
     $("trade").classList.add("hidden");
@@ -110,7 +152,6 @@ function craftItem(item) {
     const material = game.player.inventory.filter(m => m.id == item.id)[0]
     item.qty += 1
     $(material.name).innerText = (material.qty -= item.cost).toString()
-
 }
 
 function playerCanCraft(item): boolean {
@@ -119,16 +160,92 @@ function playerCanCraft(item): boolean {
 }
 
 // TRADING
+function showTradingButton() {
+    $("showTrading").classList.remove("hidden")
+}
+
 function showTrading() {
     $("craft").classList.add("hidden");
     $("quest").classList.add("hidden");
     $("trade").classList.remove("hidden")
 }
 
+// LOG
+function gaveFirstQuest(): boolean {
+    return game.log.find(findLogItemGaveFirstQuest).done
+}
+
+function findLogItemGaveFirstQuest(item) {
+    return item.name === "gaveFirstQuest"
+}
+
+function getFirstIncompleteLogItem(item) {
+    return item.done === false
+}
+
+function completeFirstIncompleteLogItem() {
+    const item = game.log.find(getFirstIncompleteLogItem)
+    item.done = true;
+}
+
+function setEventLogText() {
+    const item = game.log.find(getFirstIncompleteLogItem)
+    console.log("Setting text to " + item.text)
+    eventLogTextEle.innerText = item.text
+}
+
+function updateEventLog() {
+    const event = game.log.find(getFirstIncompleteLogItem)
+    switch (event.name) {
+        case "craftingAvailable":
+            if (game.player.inventory.find(findRatTails).qty >= 10) {
+                event.done = true;
+                showCraftingButton()
+            }
+            break;
+        case "craftedFirstItem":
+            if (game.crafts.find(findRatTailBelt).qty >= 1) {
+                event.done = true;
+                showTradingButton()
+            }
+            break;
+        case "tradingAvailable":
+            break;
+        case "boughtFirstItem":
+            break;
+        default:
+            break;
+    }
+}
+
 // UTILITIES
 function saveGame() {
     localStorage.setItem("savedGame", JSON.stringify(game))
     console.log("saving game")
+}
+
+function findRatTails(item) {
+    return item.name === "ratTails"
+}
+
+function findGoblinEars(item) {
+    return item.name === "goblinEars"
+}
+
+function findHarpyFeathers(item) {
+    return item.name === "harpyFeathers"
+}
+
+function findRatTailBelt(item) {
+    return item.name === "ratTailBelt"
+}
+
+function findGoblinEarPouch(item) {
+    return item.name === "goblinEarPouch"
+}
+
+function findHarpyFeatherHap(item) {
+    return item.name === "harpyFeatherHat"
 }
 
 function displayStats() {
@@ -143,18 +260,18 @@ window.onload = () => {
     if(localStorage) {
         if(localStorage.getItem("savedGame")) {
             game = JSON.parse(localStorage.getItem("savedGame"))
-            displayStats()
-        } else {
-            displayStats()
         }
-
     } else {
         alert("You\'re browser does not support localStorage. Please try using Chrome instead!")
     }
+    displayStats()
+    setEventLogText()
 }
 
 window.setInterval(function() {
     progressQuest()
     readyQuest()
-    saveGame()
+    updateEventLog()
+    setEventLogText()
+    // saveGame()
 }, 1000)
