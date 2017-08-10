@@ -1,0 +1,181 @@
+<div class="container">
+        <div class="row">
+            <h1>Clicker Quest</h1>
+        </div>
+        <div class="row">
+            <div class="col s12 m9 l9 push-m3 push-l3" >
+                <span class="hidden" id="showQuests"><a class="waves-effect waves-light btn" id="showQuests" onclick="showQuests()">Quests</a></span>
+                <span class="hidden" id="showCrafting"><a class="waves-effect waves-light btn" onclick="showCrafting()">Craft</a></span>
+                <span class="hidden" id="showTrading"><a class="waves-effect waves-light btn" onclick="showTrading()">Trade</a></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m3 l3">
+                <div class="event-log"><span id="event"></span></div>
+                <h4>Stats</h4>
+                <div class="card-panel">
+                    <ul>
+                        <li id="gold">Gold:</li>
+                        <li>Active Quests:
+                            <span id="activeQuests"></span>/<span id="maxQuests"></span>
+                        </li>
+                        <li>Rat Tails:
+                            <span id="ratTails"></span>
+                        </li>
+                        <li>Goblin Ears:
+                            <span id="goblinEars"></span>
+                        </li>
+                        <li>Harpy Feathers:
+                            <span id="harpyFeathers"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col s12 m9 l9" id="quest">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h4>Quests</h4></li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle green">play_arrow</i>
+                        <span class="title">Level 1 Quest</span>
+                        <p> This is a level one quest.<br>
+                        <span id="ratTails">Turn In: 10 Rat Tails</span><br>
+                        <a class="waves-effect waves-light btn" id="levelOneGive" onclick="giveQuest(event)">Give Quest</a>
+                        <a class="waves-effect waves-light btn disabled" id="levelOneReward" onclick="rewardQuest(event)">Reward Adventurer</a>
+                        <span class="progress"id="levelOneProgress"><span class="determinate" style="width:0%"></span></span>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle green">play_arrow</i>
+                        <span class="title">Level 2 Quest</span>
+                        <p> This is a level two quest.<br>
+                        <a class="waves-effect waves-light btn" id="levelTwoGive" onclick="giveQuest(event)">Give Quest</a>
+                        <a class="waves-effect waves-light btn disabled" id="levelTwoReward" onclick="rewardQuest(event)">Reward Adventurer</a>
+                        <span class="progress" id="levelTwoProgress"><span class="determinate" style="width:0%"></span></span>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle green">play_arrow</i>
+                        <span class="title">Level 3 Quest</span>
+                        <p> This is a level three quest.<br>
+                        <a class="waves-effect waves-light btn" id="levelThreeGive" onclick="giveQuest(event)">Give Quest</a>
+                        <a class="waves-effect waves-light btn disabled" id="levelThreeReward" onclick="rewardQuest(event)">Reward Adventurer</a>
+                        <span class="progress" id="levelThreeProgress"><span class="determinate" style="width:0%"></span></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="hidden" id="craft">
+                <div class="col s12 m6 l3">
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Rat Tail Belt</span>
+                            <p>A fairly shoddy belt made from twisting several rat tails together.
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="ratTailBelt" onclick="handleCraftClick(event)">Craft</a>    
+                                <p class="uses">Uses: <span id="cost">10</span> Rat Tails
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Goblin Ear Pouch</span>
+                            <p>A tiny pouch made from sewing goblin ears together.
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a>
+                                <p class="uses">Uses 10 Goblin Ears
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Harpy Feather Hat</span>
+                            <p>An adventuring hat decorated with harpy feathers.
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a><p class="uses">Uses 10 Harpy Feathers
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3">
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Rat Tail Belt</span>
+                            <p>A fairly shoddy belt made from twisting several rat tails together.
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a>    
+                                <p class="uses">Uses: 10 Rat Tails
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Goblin Ear Pouch</span>
+                            <p>A tiny pouch made from sewing goblin ears together. 
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a>
+                                <p class="uses">Uses 10 Goblin Ears
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Harpy Feather Hat</span>
+                            <p>An adventuring hat decorated with harpy feathers.
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a><p class="uses">Uses 10 Harpy Feathers
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3">
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Rat Tail Belt</span>
+                            <p>A fairly shoddy belt made from twisting several rat tails together.
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a>    
+                                <p class="uses">Uses: 10 Rat Tails
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Goblin Ear Pouch</span>
+                            <p>A tiny pouch made from sewing goblin ears together. 
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a>
+                                <p class="uses">Uses 10 Goblin Ears
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">Harpy Feather Hat</span>
+                            <p>An adventuring hat decorated with harpy feathers.
+                                Favored by slightly experienced adventurers.
+                            <div class="card-action craft-card-btn">
+                                <a class="waves-effect waves-light btn" id="craftBelt" onclick="">Craft</a><p class="uses">Uses 10 Harpy Feathers
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s9 hidden" id="trade">
+                <div id="sell">
+                    <ul class="collection with-header" id="sell-inventory">
+                        <li class="collection-header">Items to Sale</li>
+                    </ul>
+                </div>
+                <div id="buy">
+                    <ul class="collection with-header" id="buy-goods">
+                        <li class="collection-header">Items to Buy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
