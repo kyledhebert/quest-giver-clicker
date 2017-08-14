@@ -1,3 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
+
+.container {
+    display: grid;
+    grid-template-columns: 3fr 5fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        ". header"
+        ". nav"
+        " stats main"
+        "log main"
+        "footer footer";
+}
+.header {
+    grid-area: header;
+    border: 1px solid black;
+    border-bottom: none;
+}
+.nav {
+    grid-area: nav;
+    border: 1px solid black;
+}
+.stats {
+    grid-area: stats;
+    border: 1px solid black;
+    border-bottom: none;
+}
+.log {
+    grid-area: log;
+    border: 1px solid black;
+}
+.main {
+    grid-area: main;
+    border: 1px solid black;
+    border-top: none;
+    border-left: none;
+}
+.footer {
+    grid-area: footer;
+    border: 1px solid black;
+    border-top: none;
+}
