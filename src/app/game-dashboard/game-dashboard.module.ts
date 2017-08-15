@@ -4,10 +4,12 @@ import { CommonModule } from '@angular/common';
 import { MdGridListModule, MdButtonModule } from '@angular/material';
 
 import { GameDashboardComponent } from './containers/game-dashboard/game-dashboard.component';
+import { GameNavigationComponent } from './components/game-navigation/game-navigation.component';
 
 @NgModule({
     declarations: [
-        GameDashboardComponent
+        GameDashboardComponent,
+        GameNavigationComponent
     ],
     imports: [
         CommonModule,
@@ -15,7 +17,8 @@ import { GameDashboardComponent } from './containers/game-dashboard/game-dashboa
         MdButtonModule
     ],
     exports: [
-        GameDashboardComponent
+        GameDashboardComponent,
+        GameNavigationComponent
     ]
 })
 export class GameDashboardModule {}
