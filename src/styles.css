@@ -3,6 +3,10 @@
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
 
 .container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
     display: grid;
     grid-template-columns: 3fr 5fr;
     grid-template-rows: auto;
