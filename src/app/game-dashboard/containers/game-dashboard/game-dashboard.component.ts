@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'game-dashboard',
+    selector: 'app-game-dashboard',
     styleUrls: ['game-dashboard.component.css'],
     templateUrl: './game-dashboard.component.html'
 })
-export class GameDashboardComponent {
-    
-}
+export class GameDashboardComponent {}
