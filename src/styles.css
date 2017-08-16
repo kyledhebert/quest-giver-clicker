@@ -13,8 +13,8 @@
     grid-template-areas:
         ". header"
         ". nav"
-        " stats main"
-        "log main"
+        " log main"
+        "stats main"
         "footer footer";
 }
 .header {
@@ -29,11 +29,11 @@
 .stats {
     grid-area: stats;
     border: 1px solid black;
-    border-bottom: none;
 }
 .log {
     grid-area: log;
     border: 1px solid black;
+    border-bottom: none;
 }
 .main {
     grid-area: main;
