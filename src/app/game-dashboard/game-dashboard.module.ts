@@ -11,7 +11,9 @@ import { GameCraftComponent } from './components/game-craft/game-craft.component
 import { GameTradeComponent } from './components/game-trade/game-trade.component';
 
 const routes: Routes = [
-    { path: '', component: GameQuestComponent, pathMatch: 'full'}
+    { path: '', component: GameQuestComponent, pathMatch: 'full'},
+    { path: 'trade', component: GameTradeComponent, pathMatch: 'full'},
+    { path: 'craft', component: GameCraftComponent, pathMatch: 'full'}
 ];
 
 

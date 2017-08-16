@@ -25,34 +25,7 @@
     </div>
     <div class="log"></div>
     <main class="main">
-        <ul class="collection with-header">
-            <li class="collection-header"><h4>Quests</h4></li>
-            <li class="collection-item avatar">
-                <i class="material-icons circle green">play_arrow</i>
-                <span class="title">Level 1 Quest</span>
-                <p> This is a level one quest.<br>
-                <span id="ratTails">Turn In: 10 Rat Tails</span><br>
-                <a class="waves-effect waves-light btn" id="levelOneGive" onclick="giveQuest(event)">Give Quest</a>
-                <a class="waves-effect waves-light btn disabled" id="levelOneReward" onclick="rewardQuest(event)">Reward Adventurer</a>
-                <span class="progress"id="levelOneProgress"><span class="determinate" style="width:0%"></span></span>
-            </li>
-            <li class="collection-item avatar">
-                <i class="material-icons circle green">play_arrow</i>
-                <span class="title">Level 2 Quest</span>
-                <p> This is a level two quest.<br>
-                <a class="waves-effect waves-light btn" id="levelTwoGive" onclick="giveQuest(event)">Give Quest</a>
-                <a class="waves-effect waves-light btn disabled" id="levelTwoReward" onclick="rewardQuest(event)">Reward Adventurer</a>
-                <span class="progress" id="levelTwoProgress"><span class="determinate" style="width:0%"></span></span>
-            </li>
-            <li class="collection-item avatar">
-                <i class="material-icons circle green">play_arrow</i>
-                <span class="title">Level 3 Quest</span>
-                <p> This is a level three quest.<br>
-                <a class="waves-effect waves-light btn" id="levelThreeGive" onclick="giveQuest(event)">Give Quest</a>
-                <a class="waves-effect waves-light btn disabled" id="levelThreeReward" onclick="rewardQuest(event)">Reward Adventurer</a>
-                <span class="progress" id="levelThreeProgress"><span class="determinate" style="width:0%"></span></span>
-            </li>
-        </ul>
+        <router-outlet></router-outlet>
     </main>
     <footer class="footer">
         I'm a footer
