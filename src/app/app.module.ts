@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 
@@ -12,7 +11,6 @@ import { GameDashboardModule} from './game-dashboard/game-dashboard.module';
   ],
   imports: [
     BrowserModule,
-    MaterialModule,
     GameDashboardModule
   ],
   providers: [],

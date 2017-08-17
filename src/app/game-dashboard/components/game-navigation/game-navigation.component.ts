@@ -12,7 +12,7 @@ interface NavButton {
     styleUrls: ['./game-navigation.component.css'],
     template: `
     <nav>
-        <button md-button
+        <button type="button" class="btn btn-outline-primary"
         *ngFor="let button of navButtons"
         [routerLink]="button.link"
         routerLinkActive="active"
