@@ -8,41 +8,31 @@
     margin-right: auto;
     margin-left: auto;
     display: grid;
-    grid-template-columns: 3fr 5fr;
+    grid-template-columns: 1.5fr 5fr;
     grid-template-rows: auto;
     grid-template-areas:
         ". header"
-        ". nav"
+        ". buttons"
         " log main"
         "stats main"
         "footer footer";
 }
 .header {
     grid-area: header;
-    border: 1px solid black;
-    border-bottom: none;
 }
-.nav {
-    grid-area: nav;
-    border: 1px solid black;
+.buttons {
+    grid-area: buttons;
 }
 .stats {
     grid-area: stats;
-    border: 1px solid black;
 }
 .log {
     grid-area: log;
-    border: 1px solid black;
-    border-bottom: none;
 }
 .main {
     grid-area: main;
-    border: 1px solid black;
-    border-top: none;
-    border-left: none;
+    display: flex;
 }
 .footer {
     grid-area: footer;
-    border: 1px solid black;
-    border-top: none;
 }
