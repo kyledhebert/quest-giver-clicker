@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">{{ quest.name }}</h4>
+    <p class="card-text">
+      {{ quest.text }}
+    </p>
+    <p class="card-text"><small class="text-muted">This quest rewards {{ quest.turnInQty }} {{ quest.turnIn }}</small></p>
+    <button class="btn btn-primary btn-sm" (click)="onGive()"[disabled]="quest.giveButtonDisabled">Give Quest</button>
+    <button class="btn btn-secondary btn-sm"[disabled]="quest.rewardButtonDisabled">Give Reward</button>
+    <div class="progress mt-1">
+      <div class="progress-bar" [style.width.%]=quest.completion></div>
+    </div>
+  </div>
+</div>
