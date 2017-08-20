@@ -7,6 +7,9 @@ import { GameNavigationComponent } from './components/game-navigation/game-navig
 import { GameQuestComponent } from './components/game-quest/game-quest.component';
 import { GameCraftComponent } from './components/game-craft/game-craft.component';
 import { GameTradeComponent } from './components/game-trade/game-trade.component';
+import { QuestCardComponent } from './components/quest-card/quest-card.component';
+
+import { GameDashboardService } from './game-dashboard.service';
 
 const routes: Routes = [
     { path: '', component: GameQuestComponent, pathMatch: 'full'},
@@ -21,7 +24,8 @@ const routes: Routes = [
         GameNavigationComponent,
         GameQuestComponent,
         GameCraftComponent,
-        GameTradeComponent
+        GameTradeComponent,
+        QuestCardComponent
     ],
     imports: [
         CommonModule,
@@ -29,6 +33,9 @@ const routes: Routes = [
     ],
     exports: [
         GameDashboardComponent
+    ],
+    providers: [
+        GameDashboardService
     ]
 })
 export class GameDashboardModule {}
