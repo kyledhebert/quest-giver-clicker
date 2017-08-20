@@ -1,3 +1,7 @@
-<p>
-  game-quest works!
-</p>
+<div class="card-deck">
+  <app-quest-card
+    *ngFor="let quest of quests"
+    [quest]="quest"
+    (give)="handleGive($event)">
+  </app-quest-card>
+</div>
