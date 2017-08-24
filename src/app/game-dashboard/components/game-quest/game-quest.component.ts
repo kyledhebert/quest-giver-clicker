@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { QuestCardComponent } from '../quest-card/quest-card.component';
 
@@ -11,7 +11,7 @@ import { GameDashboardService } from '../../game-dashboard.service';
   templateUrl: './game-quest.component.html',
   styleUrls: ['./game-quest.component.css']
 })
-export class GameQuestComponent implements OnInit {
+export class GameQuestComponent implements OnInit, OnDestroy {
 
   quests: Quest[];
 
@@ -21,8 +21,16 @@ export class GameQuestComponent implements OnInit {
     this.quests = this.gameService.getQuests();
   }
 
+  ngOnDestroy() {
+    this.gameService.saveQuests(this.quests);
+  }
+
   handleGive(event: Quest) {
     this.gameService.giveQuest(event);
+  }
+
+  handleReward(event: Quest) {
+    this.gameService.rewardQuest(event);
   }
 
 }

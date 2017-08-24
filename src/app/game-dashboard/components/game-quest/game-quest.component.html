@@ -2,6 +2,7 @@
   <app-quest-card
     *ngFor="let quest of quests"
     [quest]="quest"
-    (give)="handleGive($event)">
+    (give)="handleGive($event)"
+    (reward)="handleReward($event)">
   </app-quest-card>
 </div>
