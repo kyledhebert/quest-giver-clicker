@@ -15,6 +15,9 @@ export class QuestCardComponent implements OnInit {
   @Output()
   give: EventEmitter<Quest> = new EventEmitter();
 
+  @Output()
+  reward: EventEmitter<Quest> = new EventEmitter();
+
 
   constructor() { }
 
@@ -22,8 +25,12 @@ export class QuestCardComponent implements OnInit {
 
   onGive() {
     console.log('giving quest');
-    this.quest.giveButtonDisabled = true;
     this.give.emit(this.quest);
+  }
+
+  onReward() {
+    console.log('rewarding quest');
+    this.reward.emit(this.quest);
   }
 
 }
