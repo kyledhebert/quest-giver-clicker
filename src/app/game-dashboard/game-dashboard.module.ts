@@ -8,6 +8,7 @@ import { GameQuestComponent } from './components/game-quest/game-quest.component
 import { GameCraftComponent } from './components/game-craft/game-craft.component';
 import { GameTradeComponent } from './components/game-trade/game-trade.component';
 import { QuestCardComponent } from './components/quest-card/quest-card.component';
+import { GameStatsComponent } from './components/game-stats/game-stats.component';
 
 import { GameDashboardService } from './game-dashboard.service';
 
@@ -25,7 +26,8 @@ const routes: Routes = [
         GameQuestComponent,
         GameCraftComponent,
         GameTradeComponent,
-        QuestCardComponent
+        QuestCardComponent,
+        GameStatsComponent
     ],
     imports: [
         CommonModule,
