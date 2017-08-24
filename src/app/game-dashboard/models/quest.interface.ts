@@ -7,4 +7,6 @@ export interface Quest {
     completion: number;
     giveButtonDisabled: boolean;
     rewardButtonDisabled: boolean;
+    isActive: boolean;
+    isComplete: boolean;
 }
