@@ -71,7 +71,6 @@ export class GameDashboardService {
   constructor() {}
 
   getQuests(): Quest[] {
-    console.log(this.quests);
     return this.quests;
   }
 
@@ -103,6 +102,10 @@ export class GameDashboardService {
     quest.isComplete = false;
     this.updateInventory(quest);
   }
+
+  getInventory(): InventoryItem[] {
+    return this.inventory;
+}
 
   updateInventory(quest: Quest) {
     const item = this.inventory.find(i => i.name.toLocaleLowerCase === quest.turnIn.toLocaleLowerCase);

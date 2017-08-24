@@ -3,26 +3,7 @@
             <h1>Clicker Quest</h1>
     </header>
     <app-game-navigation class="buttons"></app-game-navigation>
-    <div class="stats">
-        <h1>Stats</h1>
-            <div class="card-panel">
-                <ul>
-                    <li id="gold">Gold:</li>
-                    <li>Active Quests:
-                        <span id="activeQuests"></span>/<span id="maxQuests"></span>
-                    </li>
-                    <li>Rat Tails:
-                        <span id="ratTails"></span>
-                    </li>
-                    <li>Goblin Ears:
-                        <span id="goblinEars"></span>
-                    </li>
-                    <li>Harpy Feathers:
-                        <span id="harpyFeathers"></span>
-                    </li>
-                </ul>
-            </div>
-    </div>
+    <app-game-stats class="stats"></app-game-stats>
     <div class="log"></div>
     <main class="main mt-2">
         <router-outlet></router-outlet>
